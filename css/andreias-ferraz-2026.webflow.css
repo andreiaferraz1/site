@@ -1692,8 +1692,8 @@ label {
 .about_client-info {
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: flex;
 }
 
@@ -4723,6 +4723,15 @@ label {
     justify-content: center;
   }
 
+  .container.padding-top {
+    flex-flow: column;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    padding-top: 0;
+    display: flex;
+  }
+
   .container.padding-top.projects {
     padding-top: var(--spacing-xl);
   }
@@ -4846,7 +4855,26 @@ label {
   }
 
   .button-secondary {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    aspect-ratio: auto;
+    width: 200px;
     font-weight: var(--_typography---font-weight--font-weight-regular);
+    --black: #030303;
+    --white: #fff;
+    --transparent: #fff0;
+    --black-soft: #1a1a1a;
+    --spacing-xl: 120px;
+    --grey-strong: #777;
+    --grey-medium: #9a9a9a;
+    --color-dark-grey\<deleted\|variable-3019c752-970d-a991-2730-b1be4d26afc0\>: #1a1a1a;
+    --spacing-l: 100px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    display: flex;
   }
 
   .cta-wrap {
@@ -4868,6 +4896,12 @@ label {
     left: -3%;
   }
 
+  .social-link {
+    justify-content: center;
+    text-decoration: underline;
+    display: flex;
+  }
+
   .bottom-content {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
@@ -4882,6 +4916,11 @@ label {
 
   .footer-bg-image {
     object-fit: cover;
+  }
+
+  .section-footer {
+    flex-flow: column;
+    display: block;
   }
 
   .image-only {
@@ -4934,6 +4973,17 @@ label {
     grid-template-columns: 100%;
   }
 
+  .button-bg-seondary {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    aspect-ratio: auto;
+    flex: 0 auto;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-columns: 1fr;
+    display: block;
+  }
+
   .pricing-tab-menu {
     width: 100%;
     margin-bottom: 81px;
@@ -4952,6 +5002,10 @@ label {
   .footer-nav-wrap {
     grid-column-gap: 30px;
     grid-row-gap: 30px;
+  }
+
+  .line {
+    text-align: center;
   }
 
   .price-info {
@@ -4989,7 +5043,22 @@ label {
     padding: 20px;
   }
 
+  .testimonials_client-image {
+    width: 100%;
+    max-width: 30px;
+    height: 100%;
+    max-height: 30px;
+  }
+
   .unsplash-image {
+    aspect-ratio: auto;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+    position: static;
+  }
+
+  .client-name {
     width: 100%;
   }
 
@@ -5233,12 +5302,21 @@ label {
     height: 270px;
   }
 
+  .container-3 {
+    width: auto;
+    height: auto;
+  }
+
   .b-project-wrap-2 {
     grid-row-gap: 20px;
   }
 
   .more-projects-wrapper {
     flex-flow: column;
+  }
+
+  .container-4 {
+    width: auto;
   }
 }
 
