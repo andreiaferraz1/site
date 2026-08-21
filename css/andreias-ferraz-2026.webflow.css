@@ -409,6 +409,7 @@ label {
 
 .soft-text {
   color: #636363;
+  text-align: left;
 }
 
 .soft-text.font-weight-light {
@@ -1486,6 +1487,10 @@ label {
 .testimonials_right-content {
   position: sticky;
   top: 100px;
+}
+
+.experience-wrap {
+  text-align: left;
 }
 
 .global-heading {
@@ -2637,7 +2642,7 @@ label {
 }
 
 .heading-subtitle-6.full {
-  text-align: center;
+  text-align: left;
   flex-flow: column;
   align-self: center;
   align-items: center;
@@ -3200,6 +3205,19 @@ label {
   height: 100%;
 }
 
+.soft-text-copy {
+  color: #636363;
+}
+
+.soft-text-copy.font-weight-light {
+  font-weight: var(--_typography---font-weight--font-weight-light);
+  font-weight: 300;
+}
+
+.heading-4, .heading-5, .heading-6 {
+  text-align: left;
+}
+
 @media screen and (min-width: 1280px) {
   .container.padding-top {
     padding-bottom: 0;
@@ -3278,6 +3296,11 @@ label {
 
   .cta-image-main {
     width: 45%;
+  }
+
+  .footer-top-wrap {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
   }
 
   .social-link {
@@ -3775,6 +3798,10 @@ label {
 
   .about-hero_heading {
     display: block;
+  }
+
+  .experience-wrap {
+    text-align: left;
   }
 
   .global-heading {
