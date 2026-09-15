@@ -1,0 +1,23 @@
+:root { color-scheme: dark; }
+:root[data-theme="light"], :root[data-theme="light"] body, :root[data-theme="light"] .button-secondary {
+  color-scheme: light;
+  --black: #f7f7f2;
+  --white: #191919;
+  --black-soft: #d5d5ce;
+  --grey-strong: #60605b;
+  --grey-medium: #656560;
+}
+/* Webflow interactions also write these colors inline. */
+[data-theme="light"] body { background-color: var(--black) !important; color: var(--white) !important; }
+[data-theme="light"] :is(.display-01, .display-02, .hero-title, .nav-brand, .nav-link, .body-text-1, .body-text-2, .body-text-3, .body-text-4, .body-text-5) { color: var(--white) !important; }
+[data-theme="light"] .menu-bg-overlay { background-color: #f7f7f2f2; }
+[data-theme="light"] :is(.nav-brang-img, .hamburger-menu) { filter: invert(1); }
+[data-theme="light"] :is(.icon_svg-2, .plus-icon-shape) { color: var(--white); }
+[data-theme="light"] :is(.nav-underline, .bg-line) { background-color: var(--white); }
+[data-theme="light"] :is(.cta-bg-image, .footer-bg-image) { opacity: .12; }
+[data-theme="light"] .dark-gradient { background-image: linear-gradient(var(--black), transparent 50%, var(--black)); }
+[data-theme="light"] :is(.faq-item-2, .faq-item-2.w--current) { color: var(--white); }
+[data-theme="light"] .faq-answer-2 { color: var(--grey-medium); }
+[data-theme="light"] .oh-menu-toggle { color: var(--white); }
+[data-theme="light"] .oh-site-menu { background: #f7f7f2f5; }
+

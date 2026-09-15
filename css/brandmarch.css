@@ -1,0 +1,23 @@
+/* Shared case-study classes own typography, colors, spacing and responsive layout.
+   Only artwork framing and case-specific grouping are defined here. */
+.bm-navbar { position: relative; z-index: 100; width: 100%; }
+.bm-report > section.margin-top > .page-padding > .container { max-width: 100%; }
+.bm-report h2.heading-subtitle-2 { font-weight: inherit; margin-top: 0; margin-bottom: 0; }
+.bm-report .project-details-title .project-text { margin-top: 32px; margin-bottom: 0; }
+.bm-section { margin-top: 100px; }
+.bm-gallery { display: grid; gap: 100px; }
+.bm-figure { margin: 0; min-width: 0; }
+.bm-art { position: relative; overflow: hidden; background: #444; }
+.bm-art img { position: absolute; max-width: none; height: auto; display: block; }
+.bm-figure figcaption { padding-top: 20px; color: var(--grey-medium); }
+.bm-template-gallery { max-width: 680px; margin: 0 auto; }
+.bm-figma-link { display: flex; justify-content: center; margin-top: 60px; margin-bottom: 100px; }
+.bm-skip { position: fixed; top: -100px; z-index: 10000; background: var(--white); color: var(--black); padding: 16px; }
+.bm-skip:focus { top: 8px; }
+@media (max-width: 767px) {
+ .bm-gallery { gap: 48px; }
+ .bm-section { margin-top: 60px; }
+}
+/* The Challenge follows Apolitical Day’s Design Foundation grid and cards. */
+.bm-challenge-title { font-size: var(--_typography---font-size--heading-h1); line-height: var(--_typography---line-height--line-height-m); letter-spacing: -1px; margin: 0; font-weight: 500; }
+.bm-challenge-intro .project-text { margin-top: 32px; margin-bottom: 0; }
