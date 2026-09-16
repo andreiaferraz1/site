@@ -285,7 +285,7 @@ body.case-page .page-wrapper > .project-thumb-wrap { width: 100%; max-width: non
 .day-heading { padding-top: 40px; }
 .workflow-closing { margin-top: 48px; }
 .future-story .testimonials_client-image > div { overflow: hidden; }
-[data-page="about"] .future-story .testimonials_client-image img { object-fit: cover; object-position: 65% 28%; transform: scale(1.65); transform-origin: 65% 28%; }
+[data-page="about"] .future-story .testimonials_client-image img { object-fit: cover; object-position: 50% 20%; transform: none; transform-origin: 50% 20%; }
 .final-result-section { margin-top: 100px; }
 .final-result-section > .top-bar { border-top: 1px solid var(--black-soft,#333); padding-top: 24px; }
 [data-theme="light"] .final-result-section > .top-bar { border-top-color: #d4d4cf; }
@@ -324,3 +324,122 @@ body.case-page .page-wrapper > .project-thumb-wrap { width: 100%; max-width: non
 }
 @media(prefers-reduced-motion:reduce) { .site-menu[open],.site-menu[open] nav a,.site-menu.is-closing { animation-duration: .01ms; animation-delay: 0s; } }
 @media(max-width:767px) { [data-page="index"] .hero-bg-image { object-position: 46% center; } }
+/* Shared alignment and unobstructed hero/side controls. */
+.site-header:not(.is-scrolled),
+[data-theme="light"] .site-header:not(.is-scrolled),
+[data-page="index"] .site-header:not(.is-scrolled) { border-bottom-color: transparent; }
+.site-header { transition: background-color .2s, border-color .2s; }
+.site-header .nav-brand { width: 54px; overflow: hidden; margin-left: 0; flex-shrink: 0; }
+.site-header .nav-brang-img { width: 100px; max-width: none; height: auto; flex-shrink: 0; margin-left: -23.0769px; }
+body.case-page .site-header .page-padding { padding-inline: clamp(72px,7vw,160px); }
+body.case-page .site-header .container { max-width: 1300px; margin-inline: auto; }
+[data-page="index"] .hero_main > .page-padding.top { padding-inline: calc(var(--side-rail) - 30px); }
+.theme-control, .back-to-top { background: transparent !important; color: #fff !important; mix-blend-mode: difference; }
+.theme-control button { background: transparent !important; }
+@media(min-width:768px) {
+ [data-page="index"] .hero-bg-image-wrap { top: 0; height: 108%; }
+ [data-page="index"] .hero-bg-image { object-position: center top; transform: none !important; }
+}
+@media(max-width:767px) {
+ body.case-page .site-header .page-padding { padding-inline: 44px; }
+ [data-page="index"] .hero_main > .page-padding.top { padding-inline: calc(var(--side-rail) - 16px); }
+ [data-page="index"] .hero_main .hero-bottom { transform: translateY(40px); }
+}
+
+/* The home portrait fills the opening viewport, with the introduction below the face. */
+[data-page="index"] .hero_main { width: 100%; height: 100svh; min-height: 700px; margin: 0; }
+[data-page="index"] .hero-bg-image-wrap { inset: 0; width: 100%; height: 100%; }
+[data-page="index"] .hero-bg-image { width: 100%; height: 100%; object-fit: cover; }
+[data-page="index"] .hero_main > .page-padding.top { padding-inline: var(--side-rail); bottom: 24px; }
+[data-page="index"] .hero_main .hero-bottom { margin-bottom: 0; }
+[data-page="index"] .hero_main .status-wrapper { margin-bottom: 20px; }
+
+/* The card caption and index use the same two-column pattern on Work and Home. */
+[data-page="index"] .project-info, [data-page="project"] .project-info {
+  display: flex; flex-flow: row nowrap; align-items: flex-start;
+  justify-content: space-between; gap: 18px; width: 100%;
+}
+[data-page="index"] .project-info > :first-child, [data-page="project"] .project-info > :first-child { flex: 1 1 auto; min-width: 0; text-align: left; text-wrap: pretty; }
+[data-page="index"] .project-info > :last-child, [data-page="project"] .project-info > :last-child { flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap; }
+.role-nowrap { white-space: nowrap; }
+.page-wrapper :is(h1, h2, h3, .heading-subtitle, .project-info, .project-text, p) { text-wrap: pretty; }
+body.case-page .cta-title .display-02 { max-width: 1100px; text-align: center; text-wrap: balance; font-size: clamp(42px, 5.7vw, 88px); line-height: 1.05; }
+body.case-page .cta-title .cta-connect {
+  display: block; margin-top: 18px; font-size: var(--_typography---font-size--heading-h2);
+  line-height: var(--_typography---line-height--line-height-s); font-weight: 300; letter-spacing: normal;
+}
+.mobile-only-break { display: none; }
+.site-credit { grid-column: 1 / -1; width: 100%; margin-top: 14px; font-size: 11px; line-height: 1.4; font-weight: 300; text-align: center; color: #fff; }
+[data-theme="light"] .site-credit { color: var(--grey-strong); }
+
+/* Keep Quantum Deck's Outcome header aligned with the other case sections. */
+[data-page="quantum-deck"] .about_stats {
+  box-sizing: border-box; width: calc(100% - (2 * clamp(72px, 7vw, 160px)));
+  max-width: 1300px; margin: 100px auto 0;
+}
+
+/* Center the people in the four-panel concept film. */
+[data-page="orlando-health-greco"] .responsive-film[data-poster-url*="orlando-health-greco-4"] video {
+  object-fit: cover !important; object-position: 50% 50%;
+}
+
+@media (max-width: 767px) {
+  .desktop-only-break { display: none; }
+  .mobile-only-break { display: initial; }
+  [data-page="index"] .hero_main { margin: 0; width: 100%; height: 100svh; min-height: 700px; }
+  [data-page="index"] .hero_main > .page-padding.top { padding-inline: var(--side-rail); bottom: 24px; }
+  [data-page="index"] .hero_main .hero-bottom { transform: none; }
+  [data-page="index"] .hero_main .container.hero > .hero-bottom { transform: translateY(clamp(65px, 9svh, 85px)); }
+  body.case-page .cta-title .display-02 { font-size: clamp(36px, 9vw, 58px); letter-spacing: -.04em; }
+  body.case-page .cta-title .cta-connect { margin-top: 14px; font-size: var(--_typography---font-size--heading-h2); line-height: 1.35; letter-spacing: normal; }
+
+  /* A tighter and consistent vertical rhythm on small screens. */
+  body { --0: 60px; --spacing-l: 60px; }
+  .container.padding-top, .section.cta-spacing-standard > .page-padding > .container { padding-top: 60px; }
+  .page-wrapper > section > .page-padding > .container { margin-top: 0; margin-bottom: 60px; }
+  .container.margin-top, .margin-top, .margin-top-2, .margin-top-3, .margin-top-4, .oh-section, .final-result-section, .project { margin-top: 60px; }
+  .project-details-block { padding-bottom: 60px; gap: 32px; }
+  .top-bar, .top-bar-2 { margin-bottom: 32px; }
+  .cta-wrap { row-gap: 48px; }
+
+  /* Larger, clearer portrait composition in the shared CTA. */
+  .cta-image-wrap { width: min(100%, 430px); min-height: 270px; }
+  .cta-image-main { width: 62%; }
+  .cta-image-left, .cta-image-right { width: 58%; }
+  .cta-image-left { left: -7%; }
+  .cta-image-right { right: -7%; }
+
+  /* About intro and biography cards read top-to-bottom on mobile. */
+  [data-page="about"] .about-role-heading { text-align: left; align-self: stretch; }
+  [data-page="about"] .testimonial-wrap { display: block; }
+  [data-page="about"] .testimonials_left-content, [data-page="about"] .testimonials_right-content { display: none; }
+  [data-page="about"] .about_testimonial-wrap { gap: 24px; }
+  [data-page="about"] .about-me { padding: 20px; gap: 20px; }
+  [data-page="about"] .testimonials_client-info, [data-page="about"] .about_client-info { display: flex; flex-direction: column; align-items: stretch; gap: 18px; }
+  [data-page="about"] .testimonials_client-image { width: 100%; max-width: none; height: clamp(180px, 65vw, 260px) !important; max-height: none; flex: 0 0 auto; aspect-ratio: 4 / 3; overflow: hidden; }
+  [data-page="about"] .testimonials_client-image > div { width: 100%; height: 100%; }
+  [data-page="about"] .testimonials_client-image img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; transform: none; }
+  [data-page="about"] .client-name { width: 100%; align-items: flex-start; text-align: left; }
+  [data-page="about"] .future-story .testimonials_client-image { aspect-ratio: 4 / 3; }
+  [data-page="about"] .future-story .testimonials_client-image img { object-position: 50% 18%; transform: none; transform-origin: 50% 18%; }
+
+  /* AI introduction: image, title and copy use one left-aligned column. */
+  [data-page="about"] .main-content-b.small { width: 100%; max-width: 100%; }
+  [data-page="about"] .main-content-block.list, [data-page="about"] .top-content-wrap { width: 100%; align-items: stretch; text-align: left; }
+  [data-page="about"] .license-image-wrap { width: 100%; }
+  [data-page="about"] .license-image { flex: 1 1 0; width: 0; height: auto; aspect-ratio: 1; max-height: none; }
+
+  /* One metadata system for every case page. */
+  body.case-page .project-details-block { width: 100%; max-width: 100%; margin-left: 0; align-items: stretch; }
+  body.case-page .project-item { display: grid; grid-template-columns: minmax(88px, 32%) minmax(0, 1fr); gap: 14px; align-items: start; }
+  body.case-page .project-item > .soft-text:first-child { width: auto; max-width: none; }
+  body.case-page .project-item > :last-child { min-width: 0; overflow-wrap: break-word; }
+  body.case-page .project-item > :last-child span { display: inline; }
+  body.case-page .project-item > :last-child span + span::before { content: ', '; }
+
+  [data-page="quantum-deck"] .about_stats { width: calc(100% - 88px); margin-top: 60px; }
+  [data-page="orlando-health-greco"] .responsive-film[data-poster-url*="orlando-health-greco-4"] { aspect-ratio: 4 / 3; }
+
+  /* Prefer balanced endings and avoid isolated last words where supported. */
+  .page-wrapper :is(h1,h2,h3,.heading,.heading-2,.heading-3,[class*="heading-subtitle"],.project-text,.soft-text,p) { text-wrap: pretty; }
+}

@@ -50,7 +50,7 @@
   var brand = wrapper.querySelector('.nav-brand');
   if (brand) { var menuBrand = brand.cloneNode(true); menuBrand.className = 'site-menu-brand'; panel.prepend(menuBrand); }
   document.body.appendChild(panel);
-  function updateHeader() { if (fixedHeader) fixedHeader.classList.toggle('is-scrolled', window.scrollY > 40); }
+  function updateHeader() { if (fixedHeader) fixedHeader.classList.toggle('is-scrolled', window.scrollY > 1); }
   window.addEventListener('scroll', updateHeader, {passive: true});
   updateHeader();
   function closeMenu() {
@@ -150,5 +150,14 @@
   document.addEventListener('visibilitychange', resumeVisible);
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) videos.forEach(function (video) { video.pause(); });
+  });
+
+  // Shared authorship credit for every exported page footer.
+  document.querySelectorAll('.section-footer .bottom-content').forEach(function (footer) {
+    if (footer.querySelector('.site-credit')) return;
+    var credit = document.createElement('div');
+    credit.className = 'site-credit';
+    credit.textContent = 'Designed by Andreia Ferraz, built with Webflow and Codex.';
+    footer.appendChild(credit);
   });
 }());
