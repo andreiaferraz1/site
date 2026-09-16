@@ -157,7 +157,7 @@
     if (footer.querySelector('.site-credit')) return;
     var credit = document.createElement('div');
     credit.className = 'site-credit';
-    credit.textContent = 'Designed by Andreia Ferraz, built with Webflow and Codex.';
+    credit.textContent = 'Customized and Developed by Andreia Ferraz using Webflow and ChatGPT Codex.';
     footer.appendChild(credit);
   });
 }());
