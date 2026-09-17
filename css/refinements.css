@@ -230,8 +230,11 @@ body.case-page .page-padding .page-padding { padding-inline: 0; }
 .theme-control, .back-to-top { top: auto; bottom: max(20px, env(safe-area-inset-bottom)); transform: none; }
 .site-header { border-bottom: 1px solid var(--dark-grey, #333); }
 [data-theme="light"] .site-header { border-bottom-color: #d4d4cf; }
-.workflow-closing { font: inherit; font-size: 1.25rem; line-height: 1.5; font-weight: 400; }
-.workflow-closing .italic-text { font: inherit; font-style: italic; }
+.workflow-closing { grid-column: 1 / -1; width: 100%; border-top: 1px solid var(--black-soft, #444); padding-top: 24px; color: var(--white, #fff); }
+.workflow-closing-label { margin-bottom: 28px; font-size: .875rem; line-height: 1.3; letter-spacing: .04em; text-transform: uppercase; }
+.workflow-closing-lead { max-width: 42ch; margin: 0; font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.22; font-weight: 400; text-wrap: balance; }
+.workflow-closing-lead strong { font-weight: 600; }
+.workflow-closing-detail { max-width: 55ch; margin: 24px 0 0; font-size: 1.25rem; line-height: 1.5; font-weight: 400; text-wrap: pretty; }
 .day-heading { position: absolute; top: 0; left: 0; width: 100%; z-index: 5; }
 .section-award-copy-copy-2 { position: relative; }
 .day-heading .top-bar { margin-top: 0; }
@@ -258,7 +261,10 @@ video::-webkit-media-controls { display: none !important; }
  .neopolis-final-pair { grid-template-columns: minmax(0,1fr); gap: 24px; }
  [data-page="neopolis"] .license-image-wrap { grid-template-columns: 1fr; }
  .day-heading { padding-top: 20px; }
- .workflow-closing { font-size: 1.125rem; }
+ .workflow-closing { padding-top: 20px; }
+ .workflow-closing-label { margin-bottom: 20px; }
+ .workflow-closing-lead { font-size: 1.5rem; }
+ .workflow-closing-detail { margin-top: 18px; font-size: 1.125rem; }
 }
 @media(prefers-reduced-motion:reduce) { .section-project .project-image { scale: none; translate: none !important; } }
 .workflow-closing { font-size: 1.25rem; line-height: 1.75rem; }
