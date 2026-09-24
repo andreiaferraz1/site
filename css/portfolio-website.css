@@ -140,12 +140,7 @@ body[data-page="portfolio-website"] .pw-challenge-quote p { font-family: Bdogrot
  .pw-node { padding:18px 10px; }.pw-node h3 { font-size:15px; }.pw-node p { font-size:12px; }
  .pw-node-figma { grid-area:1/1; }.pw-node-webflow { grid-area:1/2; }.pw-node-lovable { grid-area:2/1; }.pw-node-content { grid-area:2/2; }.pw-node-context { grid-area:3/1; }.pw-node-imagery { grid-area:3/2; }.pw-node-codex { grid-area:4/1/5/3; }
 }
-@media(prefers-reduced-motion:reduce) {
- .pw-marquee-track { animation:none; width:100%; }
- .pw-marquee .pw-tools-list { flex-wrap:wrap; justify-content:center; width:100%; gap:24px 0; }
- .pw-marquee .pw-tools-list[aria-hidden] { display:none; }
- .pw-marquee-toggle { display:none; }
-}
+
 .pw-visual-videos { width:50%; margin:0 0 60px auto; display:grid; gap:32px; }
 .pw-visual-videos video { display:block; width:100%; height:auto; background:#030303; }
 .pw-network-lines { color:#f57720; }
@@ -155,7 +150,7 @@ body[data-page="portfolio-website"] .pw-challenge-quote p { font-family: Bdogrot
 .pw-network-lines .pw-context-link { stroke-dasharray:4 7; animation-duration:4s; }
 @keyframes pw-flow-motion { to { stroke-dashoffset:-84; } }
 @media(max-width:767px) { .pw-visual-videos { width:100%; margin-bottom:32px; } }
-@media(prefers-reduced-motion:reduce) { .pw-network-lines path { animation:none; } }
+
 
 .pw-closing { padding: 150px 0; }
 .pw-closing .heading-subtitle-6 { text-align: left; }
@@ -173,6 +168,11 @@ body[data-page="portfolio-website"] .pw-visual-videos figcaption { text-align: l
  .pw-network-lines path { animation: pw-flow-motion 6s linear infinite; }
  .pw-network-lines .pw-context-link { animation-duration: 4s; }
 }
-@media (prefers-reduced-motion:reduce) {
- .pw-marquee-track, .pw-network-lines path { animation: none; }
-}
+
+
+/* Match the original About tool marks: their own linework, monochrome, 48px. */
+.pw-logo-frame { width:72px; height:72px; flex-basis:72px; padding:12px; }
+.pw-node-logos .pw-logo-frame { width:64px; height:64px; flex-basis:64px; padding:8px; }
+.pw-logo-frame img { width:48px; height:48px; object-fit:contain; }
+.pw-node-logos { gap:8px; }
+@media(max-width:767px) { .pw-node-logos .pw-logo-frame { width:48px; height:48px; flex-basis:48px; padding:6px; } .pw-node-logos .pw-logo-frame img { width:36px; height:36px; } }

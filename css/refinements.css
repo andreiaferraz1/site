@@ -247,7 +247,7 @@ body.case-page .page-padding .page-padding { padding-inline: 0; }
 .responsive-film, .w-background-video.responsive-film { height: auto !important; min-height: 0 !important; aspect-ratio: var(--film-ratio,16/9); width: 100%; overflow: hidden; }
 .responsive-film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain !important; }
 .lich-website { position: relative; margin-top: 40px; }
-video::-webkit-media-controls { display: none !important; }
+video:not([controls])::-webkit-media-controls { display: none !important; }
 .w-backgroundvideo-backgroundvideoplaypausebutton, [data-w-bg-video-control] { display: none !important; }
 [data-page="apolitical-social-media"] #ambiguity-film { object-fit: contain; width: 100%; height: 100%; }
 .section-project .project-card-link { overflow: hidden; }
