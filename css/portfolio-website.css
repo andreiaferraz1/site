@@ -113,7 +113,7 @@ body[data-page="portfolio-website"] .pw-challenge-quote p { font-family: Bdogrot
 .pw-marquee .pw-tools-list { display: flex; flex: 0 0 auto; gap: 0; padding: 0; }
 .pw-marquee .pw-tools-list li { width: 180px; flex: 0 0 180px; gap: 18px; }
 .pw-marquee .pw-tools-list img { transform: none; transition: none; }
-.pw-marquee:hover .pw-marquee-track, .pw-marquee.is-paused .pw-marquee-track { animation-play-state: paused; }
+@media (hover:hover) and (pointer:fine) { .pw-marquee:hover .pw-marquee-track { animation-play-state: paused; } }
 .pw-marquee-toggle { display: block; margin: 12px auto 0; padding: 8px 12px; background: none; border: 1px solid var(--black-soft); color: var(--grey-medium); font: inherit; font-size: 12px; cursor: pointer; }
 @keyframes pw-ribbon { to { transform: translateX(-50%); } }
 /* Connected activities, not numbered stages. */
@@ -160,3 +160,19 @@ body[data-page="portfolio-website"] .pw-challenge-quote p { font-family: Bdogrot
 .pw-closing { padding: 150px 0; }
 .pw-closing .heading-subtitle-6 { text-align: left; }
 @media (max-width: 767px) { .pw-closing { padding: 100px 0; } }
+
+/* Keep photography separate from monochrome tool marks. */
+[data-theme="light"] body[data-page="portfolio-website"] .pw-figure img { filter: none; }
+body[data-page="portfolio-website"] .pw-visual-videos figcaption { text-align: left; }
+.pw-logo-frame { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; flex: 0 0 64px; border: 1px solid var(--grey-medium); border-radius: 14px; color: var(--white); }
+.pw-tools-list .pw-logo-frame { padding: 12px; }
+.pw-node-logos .pw-logo-frame { width: 48px; height: 48px; flex-basis: 48px; padding: 9px; border-radius: 11px; }
+.pw-logo-frame img { width: 100%; height: 100%; }
+@media (max-width:767px) {
+ .pw-marquee-track { animation: pw-ribbon 36s linear infinite; }
+ .pw-network-lines path { animation: pw-flow-motion 6s linear infinite; }
+ .pw-network-lines .pw-context-link { animation-duration: 4s; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .pw-marquee-track, .pw-network-lines path { animation: none; }
+}
