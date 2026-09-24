@@ -176,3 +176,6 @@ body[data-page="portfolio-website"] .pw-visual-videos figcaption { text-align: l
 .pw-logo-frame img { width:48px; height:48px; object-fit:contain; }
 .pw-node-logos { gap:8px; }
 @media(max-width:767px) { .pw-node-logos .pw-logo-frame { width:48px; height:48px; flex-basis:48px; padding:6px; } .pw-node-logos .pw-logo-frame img { width:36px; height:36px; } }
+
+/* One frame per tool; all artwork inside is unframed. */
+.pw-logo-frame, .pw-node-logos .pw-logo-frame { border-width: 1.5px; }
