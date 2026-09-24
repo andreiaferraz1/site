@@ -101,7 +101,7 @@
   }, {passive: true});
   reducedMotion.addEventListener('change', paintCovers);
   paintCovers();
-  // Load a single H.264 source close to the viewport and pause offscreen media.
+  // Load a single H.264 source close to the viewport and keep initialized media looping while the page is active.
   var videos = document.querySelectorAll('video');
   function load(video) {
     if (video.dataset.loaded) return;
@@ -122,13 +122,14 @@
         if (!reducedMotion.matches && !(navigator.connection && navigator.connection.saveData)) {
           video.play().catch(function () { video.controls = false; });
         } else video.controls = false;
-      } else video.pause();
+      }
     });
   }, {rootMargin: '100px', threshold: 0.01});
   videos.forEach(function (video) {
     video.controls = false;
     video.disablePictureInPicture = true;
     video.setAttribute('controlslist', 'nodownload noplaybackrate noremoteplayback');
+    video.loop = true;
     video.muted = true;
     video.playsInline = true;
     video.preload = 'none';
@@ -140,7 +141,7 @@
     if (document.hidden || reducedMotion.matches) return;
     videos.forEach(function (video) {
       var rect = video.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < innerHeight) {
+      if (video.dataset.loaded || (rect.bottom > 0 && rect.top < innerHeight)) {
         load(video); video.play().catch(function () {});
       }
     });

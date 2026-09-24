@@ -1,21 +1,4 @@
 (() => {
-  const videos = document.querySelectorAll('.st-campaign video');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  if (!('IntersectionObserver' in window)) return;
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(({ target: video, isIntersecting }) => {
-      if (!isIntersecting) video.pause();
-      else if (!reduced.matches && !video.dataset.userPaused) video.play().catch(() => {});
-    });
-  }, { threshold: 0.2 });
-  videos.forEach(video => {
-    video.addEventListener('pointerdown', () => { video.dataset.userPaused = 'true'; });
-    video.addEventListener('keydown', () => { video.dataset.userPaused = 'true'; });
-    observer.observe(video);
-  });
-  reduced.addEventListener('change', () => { if (reduced.matches) videos.forEach(video => video.pause()); });
-})();
-(() => {
  const slider = document.querySelector('.st-journey-slider');
  if (!slider) return;
  const slides = [...slider.querySelectorAll('.st-journey-slide')];
