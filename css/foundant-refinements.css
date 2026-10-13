@@ -69,3 +69,16 @@ body.dark-theme #dimensions .dimension-detail{background:transparent}
 .evidence-row .evidence-expanded h4{margin:24px 0 14px}
 @media(min-width:761px) and (max-width:1000px){.evidence-row{--evidence-columns:25px 25px minmax(150px,1fr) minmax(240px,.85fr) 18px;--evidence-gap:12px}.evidence-row .metric{grid-template-columns:105px minmax(0,1fr);gap:12px}}
 @media(max-width:760px){.evidence-row{--evidence-columns:22px 24px minmax(0,1fr) 18px;--evidence-gap:10px}.evidence-row .evidence-expanded{padding:5px 0 30px;row-gap:24px}.evidence-row .evidence-expanded>img{grid-column:1/-1}.evidence-row .evidence-expanded>div{grid-column:3/-1}.evidence-row .metric{grid-template-columns:105px minmax(0,1fr);gap:12px}}
+
+/* Explore one relationship at a time using the six dimension controls. */
+.connection-hint{margin:24px 0 0;color:var(--teal)}
+.tree-node{font:inherit;color:inherit;background:none;border:0;cursor:pointer;transition:opacity .2s}
+.tree-node.relationship-muted{opacity:.35}
+.tree-node.relationship-active .icon{background:#c5e86c;color:#183029;border-color:#55951b}
+.tree-node[aria-pressed="true"] .icon{outline:2px solid var(--teal);outline-offset:5px}
+.connection-tree [hidden],#connection-reset[hidden]{display:none!important}
+.relationship-detail{margin:80px auto 0;max-width:760px;padding:32px;border-top:2px solid var(--teal);text-align:center}
+.relationship-detail .eyebrow{font-size:11px;line-height:1.7;margin-bottom:20px}
+.relationship-detail h3{font-size:clamp(27px,3vw,40px);margin-bottom:20px}
+.relationship-detail>p:last-child{max-width:600px;margin:0 auto}
+@media(max-width:760px){.relationship-detail{margin-top:55px;padding:24px 0}.tree-node span{font-size:9px}}
