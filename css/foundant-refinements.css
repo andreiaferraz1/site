@@ -42,3 +42,8 @@ body.dark-theme .hero,body.dark-theme .closing{background:#183029;color:#f4f3f0}
 @media(max-width:760px){.section.evidence{padding-top:56px}.evidence .split-heading{row-gap:28px}.evidence .split-heading>.eyebrow{margin-bottom:0}.statement[data-slide="26"]>img{object-position:55% center}}
 
 #music-player{width:min(540px,90vw);border:0;border-radius:24px;padding:28px;background:#f4f3f0;color:#183029}#music-player::backdrop{background:#18302980}#music-close{float:right;border:0;background:none;font-size:28px;cursor:pointer}#music-player p{margin:0 35px 24px 0}#music-embed iframe{display:block;border-radius:12px}
+
+/* Keep the closing CTA readable when dark mode changes --forest. */
+body.dark-theme .closing-bottom .pill{background:#c5e86c;color:#183029}
+body.dark-theme .closing-bottom .pill:hover{background:#97d700;color:#183029}
+body.dark-theme .closing-bottom .pill:focus-visible{outline:3px solid #f4f3f0;outline-offset:4px}
