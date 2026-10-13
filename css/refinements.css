@@ -449,3 +449,9 @@ body.case-page .cta-title .cta-connect {
   /* Prefer balanced endings and avoid isolated last words where supported. */
   .page-wrapper :is(h1,h2,h3,.heading,.heading-2,.heading-3,[class*="heading-subtitle"],.project-text,.soft-text,p) { text-wrap: pretty; }
 }
+
+/* Shared bottom controls: theme and music right, navigation left. */
+.theme-control,.back-to-top{top:auto;bottom:max(20px,env(safe-area-inset-bottom));transform:none}
+.theme-control button{padding:0;flex-shrink:0;position:relative}
+.theme-control svg{width:20px;height:20px;min-width:20px;max-width:none}
+.site-music-toggle[aria-pressed="true"]:after{content:'';position:absolute;right:2px;width:4px;height:4px;background:currentColor;border-radius:50%}
