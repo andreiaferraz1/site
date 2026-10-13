@@ -11,16 +11,16 @@ const dimensions=[
 ['Intelligence & Insight','Information translated into useful, trusted understanding.'],
 ['Purpose-Built Technology','Tools designed around the work clients actually need to do.']];
 function setMotion(paused){motionPaused=paused;document.body.classList.toggle('motion-paused',paused);$('.motion-toggle').setAttribute('aria-pressed',String(paused));$('.motion-toggle').innerHTML=paused?'Resume motion <span>▷</span>':'Pause motion <span>Ⅱ</span>';$$('video').forEach(v=>{if(paused)v.pause();else v.play().catch(()=>{});});if(paused)stopJourney();}
-$('.motion-toggle').addEventListener('click',()=>setMotion(!motionPaused));
+$('.motion-toggle')?.addEventListener('click',()=>setMotion(!motionPaused));
 reduced.addEventListener('change',e=>setMotion(e.matches));
 $$('[data-dimension]').forEach(button=>button.addEventListener('click',()=>{
 const i=Number(button.dataset.dimension);$('.orbit-stage').classList.add('selected');
 $$('[data-dimension]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.dimension)===i)));
 $('#dimension-count').textContent=`0${i+1} / SIX DIMENSIONS`;
 $('#dimension-title').textContent=dimensions[i][0];$('#dimension-description').textContent=dimensions[i][1];
-$('#dimension-symbol').replaceChildren($(`.dimension-index [data-dimension="${i}"] svg`).cloneNode(true));$('#orbit-resume').hidden=false;
+$('#dimension-symbol').replaceChildren($(`.dimension-index [data-dimension="${i}"] svg`).cloneNode(true));if($('#orbit-resume'))$('#orbit-resume').hidden=false;if(innerWidth<760) $('.dimension-detail').scrollIntoView({behavior:motionPaused?'instant':'smooth',block:'center'});
 }));
-$('#orbit-resume').addEventListener('click',()=>{$('.orbit-stage').classList.remove('selected');$$('[data-dimension]').forEach(b=>b.setAttribute('aria-pressed','false'));$('#orbit-resume').hidden=true;$('#dimension-count').textContent='EXPLORE THE CONNECTION';});
+$('#orbit-resume')?.addEventListener('click',()=>{$('.orbit-stage').classList.remove('selected');$$('[data-dimension]').forEach(b=>b.setAttribute('aria-pressed','false'));$('#orbit-resume').hidden=true;$('#dimension-count').textContent='EXPLORE THE CONNECTION';});
 $$('.word-reveal').forEach(el=>{let index=0;const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);nodes.forEach(node=>{const frag=document.createDocumentFragment();node.textContent.split(/(\s+)/).forEach(word=>{if(!word.trim()){frag.append(document.createTextNode(word));return;}const span=document.createElement('span');span.className='word';span.style.setProperty('--word',index++);span.textContent=word;frag.append(span)});node.replaceWith(frag);});});
 document.body.classList.add('js-motion');
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');revealObserver.unobserve(e.target)}}),{threshold:.2});$$('.reveal').forEach(e=>revealObserver.observe(e));
