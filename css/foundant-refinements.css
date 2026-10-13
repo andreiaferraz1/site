@@ -213,3 +213,5 @@ details.story-opportunity{max-width:none;width:100%;margin:32px 0 40px;border-bo
 
 /* Align music and theme with the opposite bottom navigation arrow. */
 .page-tools{top:auto;bottom:max(20px,env(safe-area-inset-bottom));transform:none}
+
+.journey-section .journey-sales-note{max-width:680px;margin:18px auto 0;text-align:center;font:400 16px/1.6 Lato,sans-serif;color:inherit;opacity:.8;text-wrap:pretty}
