@@ -5,6 +5,7 @@ function drawConnections(){if(!tree||!svg)return;const box=tree.getBoundingClien
 new ResizeObserver(drawConnections).observe(tree);document.fonts.ready.then(drawConnections);
 const theme=$('#theme-toggle');theme.addEventListener('click',()=>{const dark=document.body.classList.toggle('dark-theme');theme.setAttribute('aria-pressed',dark);theme.textContent=dark?'Light mode':'Dark mode'});
 const music=$('#music-toggle');
-const audioSource=music?.dataset.audioSrc;
-if(music&&audioSource){const audio=new Audio(audioSource);audio.loop=true;audio.preload='none';music.disabled=false;music.removeAttribute('title');music.addEventListener('click',async()=>{if(!audio.paused){audio.pause();music.textContent='Music off ♫';music.setAttribute('aria-pressed','false');return;}try{await audio.play();music.textContent='Music on ♫';music.setAttribute('aria-pressed','true')}catch{music.textContent='Music unavailable';music.setAttribute('aria-pressed','false')}});window.addEventListener('pagehide',()=>audio.pause())}
+const musicPlayer=$('#music-player'),musicEmbed=$('#music-embed');
+function closeMusic(){musicEmbed.replaceChildren();musicPlayer.close();music.setAttribute('aria-pressed','false');music.textContent='Music ♫'}
+if(music&&musicPlayer){music.addEventListener('click',()=>{if(musicPlayer.open){closeMusic();return}const frame=document.createElement('iframe');frame.src='https://open.spotify.com/embed/track/5VbrdsZTCwNlb00HX7vsuj?utm_source=generator';frame.title='Glide by Twindex and Coogan';frame.width='100%';frame.height='352';frame.style.border='0';frame.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';musicEmbed.replaceChildren(frame);musicPlayer.showModal();music.setAttribute('aria-pressed','true');music.textContent='Close music ♫'});$('#music-close').addEventListener('click',closeMusic);musicPlayer.addEventListener('cancel',event=>{event.preventDefault();closeMusic()})}
 })();
