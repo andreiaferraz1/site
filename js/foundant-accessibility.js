@@ -24,12 +24,12 @@ function selectRelationship(index){
 relationshipNodes.forEach((node,i)=>node.addEventListener('click',()=>selectRelationship(i)));
 relationshipReset.addEventListener('click',()=>{delete tree.dataset.relationship;relationshipNodes.forEach(node=>{node.setAttribute('aria-pressed','false');node.classList.remove('relationship-active','relationship-muted')});$('.branches').hidden=false;$('.combination-result').hidden=false;relationshipPanel.hidden=true;relationshipReset.hidden=true;drawConnections()});
 new ResizeObserver(drawConnections).observe(tree);document.fonts.ready.then(drawConnections);
-const theme=$('#theme-toggle');theme.addEventListener('click',()=>{const dark=document.body.classList.toggle('dark-theme');theme.setAttribute('aria-pressed',dark);theme.textContent=dark?'Light mode':'Dark mode'});
+const theme=$('#theme-toggle');theme.addEventListener('click',()=>{const dark=document.body.classList.toggle('dark-theme');theme.setAttribute('aria-pressed',dark);theme.querySelector('.control-label').textContent=dark?'Light mode':'Dark mode';theme.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');theme.title=theme.getAttribute('aria-label')});
 const music=$('#music-toggle');
 if(music){
  const audio=new Audio(music.dataset.audioSrc);audio.preload='none';audio.loop=true;
  let requested=false;
- function showState(on){music.setAttribute('aria-pressed',String(on));music.textContent=on?'Music on ♫':'Music off ♫'}
+ function showState(on){music.setAttribute('aria-pressed',String(on));music.querySelector('.control-label').textContent=on?'Music on':'Music off';music.setAttribute('aria-label',on?'Stop music':'Play music');music.title=music.getAttribute('aria-label')}
  function stopMusic(){requested=false;audio.pause();audio.currentTime=0;showState(false)}
  music.addEventListener('click',async()=>{
   if(requested){stopMusic();return}
