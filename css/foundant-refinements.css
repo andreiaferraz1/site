@@ -47,3 +47,8 @@ body.dark-theme .hero,body.dark-theme .closing{background:#183029;color:#f4f3f0}
 body.dark-theme .closing-bottom .pill{background:#c5e86c;color:#183029}
 body.dark-theme .closing-bottom .pill:hover{background:#97d700;color:#183029}
 body.dark-theme .closing-bottom .pill:focus-visible{outline:3px solid #f4f3f0;outline-offset:4px}
+
+/* Inline YouTube playback with a single on/off toggle. */
+#music-player{position:fixed;right:20px;bottom:82px;width:320px;max-width:calc(100vw - 32px);padding:0;border:0;border-radius:12px;overflow:hidden;background:#000;z-index:110;box-shadow:0 8px 32px #0005}
+#music-player[hidden]{display:none}
+#music-embed iframe{display:block;width:100%;height:200px;border:0}

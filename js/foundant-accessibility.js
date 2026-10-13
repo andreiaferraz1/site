@@ -5,7 +5,18 @@ function drawConnections(){if(!tree||!svg)return;const box=tree.getBoundingClien
 new ResizeObserver(drawConnections).observe(tree);document.fonts.ready.then(drawConnections);
 const theme=$('#theme-toggle');theme.addEventListener('click',()=>{const dark=document.body.classList.toggle('dark-theme');theme.setAttribute('aria-pressed',dark);theme.textContent=dark?'Light mode':'Dark mode'});
 const music=$('#music-toggle');
-const musicPlayer=$('#music-player'),musicEmbed=$('#music-embed');
-function closeMusic(){musicEmbed.replaceChildren();musicPlayer.close();music.setAttribute('aria-pressed','false');music.textContent='Music ♫'}
-if(music&&musicPlayer){music.addEventListener('click',()=>{if(musicPlayer.open){closeMusic();return}const frame=document.createElement('iframe');frame.src='https://open.spotify.com/embed/track/5VbrdsZTCwNlb00HX7vsuj?utm_source=generator';frame.title='Glide by Twindex and Coogan';frame.width='100%';frame.height='352';frame.style.border='0';frame.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';musicEmbed.replaceChildren(frame);musicPlayer.showModal();music.setAttribute('aria-pressed','true');music.textContent='Close music ♫'});$('#music-close').addEventListener('click',closeMusic);musicPlayer.addEventListener('cancel',event=>{event.preventDefault();closeMusic()})}
+if(music){
+ const audio=new Audio(music.dataset.audioSrc);audio.preload='none';audio.loop=true;
+ let requested=false;
+ function showState(on){music.setAttribute('aria-pressed',String(on));music.textContent=on?'Music on ♫':'Music off ♫'}
+ function stopMusic(){requested=false;audio.pause();audio.currentTime=0;showState(false)}
+ music.addEventListener('click',async()=>{
+  if(requested){stopMusic();return}
+  requested=true;showState(true);
+  try{await audio.play();if(!requested)audio.pause()}
+  catch{requested=false;showState(false)}
+ });
+ audio.addEventListener('error',()=>{requested=false;showState(false)});
+ window.addEventListener('pagehide',stopMusic);
+}
 })();
