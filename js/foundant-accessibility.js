@@ -41,3 +41,17 @@ if(music){
  window.addEventListener('pagehide',stopMusic);
 }
 })();
+
+// Loop short, silent excerpts while the story gallery is in view.
+(()=>{
+ const frames=[...document.querySelectorAll('.story-video iframe')];if(!frames.length)return;
+ const script=document.createElement('script');script.src='https://player.vimeo.com/api/player.js';
+ script.onload=()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)');frames.forEach(frame=>{
+ const player=new Vimeo.Player(frame);let visible=false,seeking=false;
+ const sync=()=>{if(visible&&!reduced.matches&&!document.body.classList.contains('motion-paused'))player.play().catch(()=>{});else player.pause().catch(()=>{})};
+ player.ready().then(()=>{player.setMuted(true);player.setCurrentTime(8).catch(()=>{});sync()}).catch(()=>{});
+ player.on('timeupdate',event=>{if(event.seconds>=20&&!seeking){seeking=true;player.setCurrentTime(8).catch(()=>{}).finally(()=>{seeking=false})}});
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:.1}).observe(frame.parentElement);
+ new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});reduced.addEventListener('change',sync);
+ });};document.head.append(script);
+})();
