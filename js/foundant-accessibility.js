@@ -55,3 +55,26 @@ if(music){
  new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});reduced.addEventListener('change',sync);
  });};document.head.append(script);
 })();
+
+// Touch equivalent of hover: first tap previews; second tap opens the full story.
+(()=>{
+ const cards=[...document.querySelectorAll('.story-video')];
+ cards.forEach(card=>{
+  let touch=false;
+  card.addEventListener('pointerdown',event=>{touch=event.pointerType==='touch'||event.pointerType==='pen'});
+  card.addEventListener('click',event=>{
+   if(!touch)return;
+   if(!card.classList.contains('preview-open')){
+    event.preventDefault();cards.forEach(other=>other.classList.remove('preview-open'));
+    card.classList.add('preview-open');
+   }
+   touch=false;
+  });
+ });
+ document.addEventListener('pointerdown',event=>{if(!event.target.closest('.story-video'))cards.forEach(card=>card.classList.remove('preview-open'))});
+ // Retry muted native video playback after the first touch when autoplay is restricted.
+ document.addEventListener('pointerdown',()=>{
+  if(document.body.classList.contains('motion-paused')||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('video[autoplay][muted]').forEach(video=>video.play().catch(()=>{}));
+ },{once:true,passive:true});
+})();

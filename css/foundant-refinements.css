@@ -215,3 +215,52 @@ details.story-opportunity{max-width:none;width:100%;margin:32px 0 40px;border-bo
 .page-tools{top:auto;bottom:max(20px,env(safe-area-inset-bottom));transform:none}
 
 .journey-section .journey-sales-note{max-width:680px;margin:18px auto 0;text-align:center;font:400 16px/1.6 Lato,sans-serif;color:inherit;opacity:.8;text-wrap:pretty}
+
+/* Dark-theme readability: fixed light surfaces and inverted tokens. */
+body.dark-theme .three-columns:not(.branches) p{color:#d1ddd5}
+body.dark-theme .journey-map button{background:#183029;color:#f4f3f0}
+body.dark-theme .journey-map button[aria-pressed="true"]{background:#304831;border-color:#97d700}
+body.dark-theme .questions,body.dark-theme .roadmap{color:#f4f3f0}
+body.dark-theme .question-list p{color:#b8cbbd}
+body.dark-theme .question-list p.current{color:#c5e86c}
+body.dark-theme .chapter em{color:#00565a}
+body.dark-theme .assessment-notes{color:#e6eee8}
+body.dark-theme .precise-connections path{stroke:#b5e3d8}
+body.dark-theme .tree-node .icon{border-color:#b5e3d8}
+body.dark-theme .relationship-muted{opacity:.7}
+body.dark-theme .skip{color:#183029;background:#c5e86c}
+body.dark-theme a:focus-visible,body.dark-theme button:focus-visible,body.dark-theme summary:focus-visible{outline-color:#c5e86c}
+body.dark-theme .chapter a:focus-visible{outline-color:#183029}
+body.dark-theme .source-note a,body.dark-theme .community-reference a{text-decoration:underline;text-underline-offset:3px}
+.journey-narrative>span{color:#b5e3d8}
+/* A crisp CSS ring is drawn separately from the portrait pixels. */
+.portrait-frame{position:relative;border:0;background:#fff;isolation:isolate}
+.portrait-frame:after{content:'';position:absolute;inset:0;border:3px solid #101b16;border-radius:50%;pointer-events:none;z-index:2}
+.people-grid .portrait-frame img,.author-portrait .portrait-frame img{image-rendering:auto;backface-visibility:hidden}
+
+/* Final dark-mode details and consistent portrait edges. */
+body.dark-theme .success-measures article:nth-child(2),body.dark-theme .discussion-prompts article:nth-child(2){border-color:#b5e3d8}
+body.dark-theme .success-measures article:nth-child(3){border-color:#d1ddd5}
+body.dark-theme .tree-node.relationship-active .icon{background:#c5e86c;color:#183029;border-color:#c5e86c}
+.portrait-frame:after{border-color:#000;box-sizing:border-box}
+#music-toggle,#theme-toggle,.foundant-back-top,.motion-toggle{min-height:44px}
+
+/* Mobile parity: all stories reachable, touch previews, animated roadmap. */
+.story-video.preview-open .story-preview{opacity:1}
+.story-gallery.story-videos .story-video.preview-open{transform:rotate(0deg) scale(1.03);z-index:5}
+@media(max-width:760px){
+ .story-gallery.story-videos{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;gap:22px;margin:32px -6vw;padding:24px 6vw 30px;scroll-padding-inline:6vw;-webkit-overflow-scrolling:touch}
+ .story-gallery.story-videos .story-video{flex:0 0 84%;height:360px;scroll-snap-align:center}
+ .story-gallery.story-videos .story-video:nth-child(2){height:390px}
+ .story-preview{padding:24px}
+ .story-preview h3{font-size:24px}.story-preview p:not(.eyebrow){font-size:15px}.story-preview .eyebrow,.story-formats{font-size:11px}
+ .tree-node{min-height:90px;min-width:0;padding-inline:0}
+ .tree-node span{font-size:10px;overflow-wrap:anywhere}
+ .arrows button,#journey-play,#orbit-resume,.motion-toggle{min-height:44px;min-width:44px}
+ .chapter>a{display:block;flex-shrink:0}
+ .roadmap-path:before{content:'';position:absolute;left:-2px;top:0;width:3px;height:100%;background:linear-gradient(180deg,transparent 0%,transparent 35%,#c5e86c 50%,transparent 65%,transparent 100%);background-size:100% 250%;animation:mobile-roadmap-flow 7s linear infinite;pointer-events:none}
+ .question-list p{color:#b8cbbd}.question-list p.current{color:#c5e86c}
+}
+@keyframes mobile-roadmap-flow{from{background-position:0 100%}to{background-position:0 -100%}}
+
+
