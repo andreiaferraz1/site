@@ -52,7 +52,7 @@ if(music){
  player.ready().then(()=>{player.setMuted(true);player.setCurrentTime(8).catch(()=>{});sync()}).catch(()=>{});
  player.on('timeupdate',event=>{if(event.seconds>=20&&!seeking){seeking=true;player.setCurrentTime(8).catch(()=>{}).finally(()=>{seeking=false})}});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:.1}).observe(frame.parentElement);
- new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});reduced.addEventListener('change',sync);
+ new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});reduced.addEventListener('change',sync);document.addEventListener('pointerdown',sync,{passive:true});
  });};document.head.append(script);
 })();
 
@@ -77,4 +77,23 @@ if(music){
   if(document.body.classList.contains('motion-paused')||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   document.querySelectorAll('video[autoplay][muted]').forEach(video=>video.play().catch(()=>{}));
  },{once:true,passive:true});
+})();
+
+// Retain the animated journey connectors in the stacked mobile layout.
+(()=>{
+ const map=document.querySelector('.journey-map'),svg=map?.querySelector(':scope > svg');if(!svg)return;
+ const path=svg.querySelector('path'),original=path.getAttribute('d'),viewBox=svg.getAttribute('viewBox');
+ const mobile=matchMedia('(max-width:760px)');
+ function draw(){
+  if(!mobile.matches){svg.setAttribute('viewBox',viewBox);path.setAttribute('d',original);return}
+  const box=map.getBoundingClientRect();if(!box.width)return;
+  svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+  const nodes=[...map.querySelectorAll('[data-stage]')];
+  const point=(node,bottom)=>{const r=node.getBoundingClientRect();return [r.left+r.width/2-box.left,(bottom?r.bottom:r.top)-box.top]};
+  const edge=(from,to)=>{const a=point(from,true),b=point(to,false),mid=(a[1]+b[1])/2;return `M${a[0]} ${a[1]} C${a[0]} ${mid},${b[0]} ${mid},${b[0]} ${b[1]}`};
+  path.setAttribute('d',edge(nodes[0],nodes[1])+edge(nodes[0],nodes[2])+edge(nodes[1],nodes[3])+edge(nodes[2],nodes[3]));
+ }
+ new ResizeObserver(draw).observe(map);document.fonts.ready.then(draw);mobile.addEventListener('change',draw);
+ const top=document.querySelector('.foundant-back-top');
+ top?.addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});
 })();
