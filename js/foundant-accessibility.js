@@ -48,7 +48,12 @@ if(music){
  const script=document.createElement('script');script.src='https://player.vimeo.com/api/player.js';
  script.onload=()=>{const reduced=matchMedia('(prefers-reduced-motion: reduce)');frames.forEach(frame=>{
  const player=new Vimeo.Player(frame);let visible=false,seeking=false;
- const sync=()=>{if(visible&&!reduced.matches&&!document.body.classList.contains('motion-paused'))player.play().catch(()=>{});else player.pause().catch(()=>{})};
+ let videoRatio=16/9;
+ function cover(){const box=frame.parentElement.getBoundingClientRect();const width=Math.max(box.width,box.height*videoRatio);const height=width/videoRatio;Object.assign(frame.style,{width:Math.ceil(width+2)+'px',height:Math.ceil(height+2)+'px',left:'50%',top:'50%',transform:'translate(-50%,-50%)'});}
+ new ResizeObserver(cover).observe(frame.parentElement);cover();
+ Promise.all([player.getVideoWidth(),player.getVideoHeight()]).then(([w,h])=>{if(w&&h)videoRatio=w/h;cover()}).catch(()=>{});
+
+ const sync=()=>{if(visible&&!document.body.classList.contains('motion-paused'))player.play().catch(()=>{});else player.pause().catch(()=>{})};
  player.ready().then(()=>{player.setMuted(true);player.setCurrentTime(8).catch(()=>{});sync()}).catch(()=>{});
  player.on('timeupdate',event=>{if(event.seconds>=20&&!seeking){seeking=true;player.setCurrentTime(8).catch(()=>{}).finally(()=>{seeking=false})}});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()},{threshold:.1}).observe(frame.parentElement);
@@ -74,7 +79,7 @@ if(music){
  document.addEventListener('pointerdown',event=>{if(!event.target.closest('.story-video'))cards.forEach(card=>card.classList.remove('preview-open'))});
  // Retry muted native video playback after the first touch when autoplay is restricted.
  document.addEventListener('pointerdown',()=>{
-  if(document.body.classList.contains('motion-paused')||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  if(document.body.classList.contains('motion-paused') )return;
   document.querySelectorAll('video[autoplay][muted]').forEach(video=>video.play().catch(()=>{}));
  },{once:true,passive:true});
 })();
@@ -96,4 +101,22 @@ if(music){
  new ResizeObserver(draw).observe(map);document.fonts.ready.then(draw);mobile.addEventListener('change',draw);
  const top=document.querySelector('.foundant-back-top');
  top?.addEventListener('click',event=>{event.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})});
+})();
+
+// Brand motion disclosure: keyboard/touch controls and silent inline loops.
+(()=>{
+ const panel=document.getElementById('brand-in-motion');
+ if(!panel)return;
+ const videos=[...panel.querySelectorAll('[data-brand-loop]')];
+ const visible=new Set();
+ const sync=()=>videos.forEach(video=>{
+  const paused=document.body.classList.contains('motion-paused');
+  if(panel.open&&visible.has(video)&&!paused){video.muted=true;video.play().catch(()=>{});}else video.pause();
+ });
+ panel.addEventListener('toggle',sync);
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)visible.add(entry.target);else visible.delete(entry.target);});sync();},{threshold:.05});
+ videos.forEach(video=>{video.muted=true;observer.observe(video);});
+ new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)videos.forEach(video=>video.pause());else sync();});
+ panel.addEventListener('pointerdown',sync,{passive:true});
 })();

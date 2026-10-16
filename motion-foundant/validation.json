@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "videos": [
+    {
+      "width": 1440,
+      "height": 900,
+      "duration": 8.012033
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "duration": 8.0158
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "duration": 8.012367
+    }
+  ],
+  "mobileOverflow": false,
+  "playPause": true
+}

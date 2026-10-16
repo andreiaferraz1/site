@@ -10,7 +10,7 @@ const dimensions=[
 ['Active, Purposeful Listening','Feedback that leads to visible decisions and closes the loop.'],
 ['Intelligence & Insight','Information translated into useful, trusted understanding.'],
 ['Purpose-Built Technology','Tools designed around the work clients actually need to do.']];
-function setMotion(paused){motionPaused=paused;document.body.classList.toggle('motion-paused',paused);$('.motion-toggle').setAttribute('aria-pressed',String(paused));$('.motion-toggle').innerHTML=paused?'Resume motion <span>▷</span>':'Pause motion <span>Ⅱ</span>';$$('video').forEach(v=>{if(paused)v.pause();else v.play().catch(()=>{});});if(paused)stopJourney();}
+function setMotion(paused){motionPaused=paused;document.body.classList.toggle('motion-paused',paused);document.body.classList.toggle('motion-enabled',!paused);$('.motion-toggle').setAttribute('aria-pressed',String(paused));$('.motion-toggle').innerHTML=paused?'Resume motion <span>▷</span>':'Pause motion <span>Ⅱ</span>';$$('video').forEach(v=>{if(paused)v.pause();else v.play().catch(()=>{});});if(paused)stopJourney();}
 $('.motion-toggle')?.addEventListener('click',()=>setMotion(!motionPaused));
 reduced.addEventListener('change',e=>setMotion(e.matches));
 $$('[data-dimension]').forEach(button=>button.addEventListener('click',()=>{
