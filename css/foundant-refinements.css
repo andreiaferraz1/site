@@ -391,3 +391,21 @@ p,li,figcaption{ text-wrap:pretty; word-break:normal; overflow-wrap:break-word; 
  .brand-motion-intro>h3,.motion-explanation>h4{grid-column:1}
  .brand-evidence-body>p{max-width:none}
 }
+/* A concise, illustrative route from exploration to a relevant demo. */
+.demo-path-opportunity{margin-top:48px;padding-top:36px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px}
+.demo-path-heading h3{font-size:clamp(26px,3vw,38px);line-height:1.2;margin:12px 0;text-wrap:balance}
+.demo-path-copy p{margin:0 0 16px;text-wrap:pretty}
+.demo-path-flow{grid-column:1/-1;list-style:none;padding:0;margin:12px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.demo-path-flow li{position:relative;padding:20px 0;border-top:1px solid var(--line);min-width:0}
+.demo-path-flow li:not(:last-child)::after{content:'→';position:absolute;right:-24px;top:43px;color:var(--teal)}
+.demo-path-flow span{display:block;font-size:12px;color:var(--teal);margin-bottom:12px}
+.demo-path-flow strong{display:block;font-size:17px;line-height:1.4;text-wrap:balance}
+.demo-path-flow small{display:block;margin-top:8px;font-size:13px;line-height:1.5;text-wrap:pretty}
+.demo-path-footnote{grid-column:1/-1;font-size:12px;margin:0;text-wrap:pretty}
+.before-change-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.before-change-note h3{font:700 16px/1.5 Lato,sans-serif;margin:0 0 16px}
+.before-change-note ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 40px;font-size:14px;line-height:1.6}
+@media(max-width:760px){.demo-path-opportunity{grid-template-columns:1fr;gap:20px}.demo-path-flow{grid-template-columns:1fr;gap:12px}.demo-path-flow li{padding:16px 0 24px}.demo-path-flow li:not(:last-child)::after{content:'↓';right:auto;left:0;top:auto;bottom:-10px}.before-change-note ul{grid-template-columns:1fr}}
+/* Center the reference links beneath the visitor journey insight. */
+#journey>.source-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 28px;width:100%;text-align:center}
+#journey>.source-note a{margin:0}
